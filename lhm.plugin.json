@@ -1040,7 +1040,7 @@
     {
       "name": "AI-Earrings-Virtual-Try-On",
       "title": "Ai Earrings Virtual Try On",
-      "description": "The Ultimate AI Earring Virtual Try-On\nTop AI ear piercing simulator for virtual earring try-on and virtual piercing try-on\nCreate realistic and dynamic earrings vitual try-on from a 2D image, no expensive 3D modelling required. Our advanced algorithms create lifelike virtual try-on earring SKUs with sophisticated lighting effects and physically accurate motions.",
+      "description": "The Ultimate AI Earring Virtual Try-On\nTop AI ear piercing simulator for virtual earring try-on and virtual piercing try-on\nCreate realistic and dynamic earrings virtual try-on from a 2D image, no expensive 3D modelling required. Our advanced algorithms create lifelike virtual try-on earring SKUs with sophisticated lighting effects and physically accurate motions.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -5581,6 +5581,23 @@
                     "default": true,
                     "description": "Control whether shoes should be swapped when a full body reference image with shoes is available for processing.\n<br> Have effect when `garment_category` is `full_body` or `lower_body`\n"
                   },
+                  "filter_multi_person": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "off",
+                          "normal",
+                          "strict"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "off",
+                    "description": "Filter out multi-person cases in the source image and the human reference image.\n<br> `off` - No filtering. The engine uses the largest person in the image.\n<br> `normal` - Reject when another person is comparable in size to the main subject, or is clearly visible on the same plane, such as standing nearby with a sharp, recognizable face. Typical group or two-person photos. Distant or blurry background people are ignored.\n<br> `strict` - Reject when any additional person is visible, including small, distant, background, or blurry / out-of-focus people.\n"
+                  },
                   "src_file_url": {
                     "description": "Url of the file to run task. The url should be publicly accessible.",
                     "examples": [
@@ -5628,6 +5645,23 @@
                     ],
                     "default": true,
                     "description": "Control whether shoes should be swapped when a full body reference image with shoes is available for processing.\n<br> Have effect when `garment_category` is `full_body` or `lower_body`\n"
+                  },
+                  "filter_multi_person": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "off",
+                          "normal",
+                          "strict"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "off",
+                    "description": "Filter out multi-person cases in the source image and the human reference image.\n<br> `off` - No filtering. The engine uses the largest person in the image.\n<br> `normal` - Reject when another person is comparable in size to the main subject, or is clearly visible on the same plane, such as standing nearby with a sharp, recognizable face. Typical group or two-person photos. Distant or blurry background people are ignored.\n<br> `strict` - Reject when any additional person is visible, including small, distant, background, or blurry / out-of-focus people.\n"
                   },
                   "src_file_url": {
                     "description": "Url of the file to run task. The url should be publicly accessible.",
@@ -5677,6 +5711,23 @@
                     "default": true,
                     "description": "Control whether shoes should be swapped when a full body reference image with shoes is available for processing.\n<br> Have effect when `garment_category` is `full_body` or `lower_body`\n"
                   },
+                  "filter_multi_person": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "off",
+                          "normal",
+                          "strict"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "off",
+                    "description": "Filter out multi-person cases in the source image and the human reference image.\n<br> `off` - No filtering. The engine uses the largest person in the image.\n<br> `normal` - Reject when another person is comparable in size to the main subject, or is clearly visible on the same plane, such as standing nearby with a sharp, recognizable face. Typical group or two-person photos. Distant or blurry background people are ignored.\n<br> `strict` - Reject when any additional person is visible, including small, distant, background, or blurry / out-of-focus people.\n"
+                  },
                   "src_file_id": {
                     "description": "ID of file to run task. File ID from upload file API.",
                     "examples": [
@@ -5724,6 +5775,23 @@
                     ],
                     "default": true,
                     "description": "Control whether shoes should be swapped when a full body reference image with shoes is available for processing.\n<br> Have effect when `garment_category` is `full_body` or `lower_body`\n"
+                  },
+                  "filter_multi_person": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "off",
+                          "normal",
+                          "strict"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": "off",
+                    "description": "Filter out multi-person cases in the source image and the human reference image.\n<br> `off` - No filtering. The engine uses the largest person in the image.\n<br> `normal` - Reject when another person is comparable in size to the main subject, or is clearly visible on the same plane, such as standing nearby with a sharp, recognizable face. Typical group or two-person photos. Distant or blurry background people are ignored.\n<br> `strict` - Reject when any additional person is visible, including small, distant, background, or blurry / out-of-focus people.\n"
                   },
                   "src_file_id": {
                     "description": "ID of file to run task. File ID from upload file API.",
@@ -6643,40 +6711,6 @@
             "anyOf": [
               {
                 "properties": {
-                  "gender": {
-                    "enum": [
-                      "female",
-                      "male"
-                    ],
-                    "type": "string",
-                    "description": "Gender of the person in the image.",
-                    "examples": [
-                      "female"
-                    ]
-                  },
-                  "style": {
-                    "anyOf": [
-                      {
-                        "enum": [
-                          "random",
-                          "style_minimalist",
-                          "style_bohemian",
-                          "style_cottagecore",
-                          "style_french_elegance",
-                          "style_retro_fashion"
-                        ],
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ],
-                    "default": "random",
-                    "description": "To control outfit and background style.",
-                    "examples": [
-                      "random"
-                    ]
-                  },
                   "src_file_url": {
                     "description": "Url of the file to run task. The url should be publicly accessible.",
                     "examples": [
@@ -6693,7 +6727,6 @@
                   }
                 },
                 "required": [
-                  "gender",
                   "src_file_url",
                   "ref_file_url"
                 ],
@@ -6701,40 +6734,6 @@
               },
               {
                 "properties": {
-                  "gender": {
-                    "enum": [
-                      "female",
-                      "male"
-                    ],
-                    "type": "string",
-                    "description": "Gender of the person in the image.",
-                    "examples": [
-                      "female"
-                    ]
-                  },
-                  "style": {
-                    "anyOf": [
-                      {
-                        "enum": [
-                          "random",
-                          "style_minimalist",
-                          "style_bohemian",
-                          "style_cottagecore",
-                          "style_french_elegance",
-                          "style_retro_fashion"
-                        ],
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ],
-                    "default": "random",
-                    "description": "To control outfit and background style.",
-                    "examples": [
-                      "random"
-                    ]
-                  },
                   "src_file_url": {
                     "description": "Url of the file to run task. The url should be publicly accessible.",
                     "examples": [
@@ -6751,7 +6750,6 @@
                   }
                 },
                 "required": [
-                  "gender",
                   "src_file_url",
                   "ref_file_id"
                 ],
@@ -6759,40 +6757,6 @@
               },
               {
                 "properties": {
-                  "gender": {
-                    "enum": [
-                      "female",
-                      "male"
-                    ],
-                    "type": "string",
-                    "description": "Gender of the person in the image.",
-                    "examples": [
-                      "female"
-                    ]
-                  },
-                  "style": {
-                    "anyOf": [
-                      {
-                        "enum": [
-                          "random",
-                          "style_minimalist",
-                          "style_bohemian",
-                          "style_cottagecore",
-                          "style_french_elegance",
-                          "style_retro_fashion"
-                        ],
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ],
-                    "default": "random",
-                    "description": "To control outfit and background style.",
-                    "examples": [
-                      "random"
-                    ]
-                  },
                   "src_file_id": {
                     "description": "ID of file to run task. File ID from upload file API.",
                     "examples": [
@@ -6809,7 +6773,6 @@
                   }
                 },
                 "required": [
-                  "gender",
                   "src_file_id",
                   "ref_file_url"
                 ],
@@ -6817,40 +6780,6 @@
               },
               {
                 "properties": {
-                  "gender": {
-                    "enum": [
-                      "female",
-                      "male"
-                    ],
-                    "type": "string",
-                    "description": "Gender of the person in the image.",
-                    "examples": [
-                      "female"
-                    ]
-                  },
-                  "style": {
-                    "anyOf": [
-                      {
-                        "enum": [
-                          "random",
-                          "style_minimalist",
-                          "style_bohemian",
-                          "style_cottagecore",
-                          "style_french_elegance",
-                          "style_retro_fashion"
-                        ],
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ],
-                    "default": "random",
-                    "description": "To control outfit and background style.",
-                    "examples": [
-                      "random"
-                    ]
-                  },
                   "src_file_id": {
                     "description": "ID of file to run task. File ID from upload file API.",
                     "examples": [
@@ -6867,7 +6796,6 @@
                   }
                 },
                 "required": [
-                  "gender",
                   "src_file_id",
                   "ref_file_id"
                 ],
@@ -6943,7 +6871,7 @@
     },
     {
       "name": "upload_file",
-      "description": "Upload base64-encoded media files to the YouCam API and return file_id(s).",
+      "description": "Upload base64-encoded media files to the YouCam API and return file_id(s).\n\nIf task_type is omitted, files are uploaded via the generic file API\n(POST /s2s/v2.0/file) rather than a task-specific upload path.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -6955,7 +6883,14 @@
             "type": "array"
           },
           "task_type": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -7065,7 +7000,8 @@
                   "AI-Image-Generator-Text-to-Image",
                   "AI-Video-Generator-Text-to-Video",
                   "AI-Video-Enhancer",
-                  "AI-Video-Style-Transfer"
+                  "AI-Video-Style-Transfer",
+                  "AI-Watermark-Removal"
                 ],
                 "type": "string"
               },
@@ -7169,7 +7105,8 @@
               "AI-Image-Generator-Text-to-Image",
               "AI-Video-Generator-Text-to-Video",
               "AI-Video-Enhancer",
-              "AI-Video-Style-Transfer"
+              "AI-Video-Style-Transfer",
+              "AI-Watermark-Removal"
             ],
             "type": "string"
           },
@@ -7314,7 +7251,8 @@
               "AI-Image-Generator-Text-to-Image",
               "AI-Video-Generator-Text-to-Video",
               "AI-Video-Enhancer",
-              "AI-Video-Style-Transfer"
+              "AI-Video-Style-Transfer",
+              "AI-Watermark-Removal"
             ],
             "type": "string"
           }
@@ -7479,39 +7417,52 @@
       }
     },
     {
-      "name": "AI-Makeup-Virtual-Try-On-Pattern-Name",
-      "description": "Get AI Makeup VTO available pattern names.",
+      "name": "Get-Unit-Info",
+      "title": "Get Unit Info",
+      "description": "Get the current unit balance for this account, including each unit's type, amount, and expiry.",
       "inputSchema": {
         "type": "object",
-        "properties": {
-          "categories": {
-            "description": "List of makeup VTO categories.",
-            "items": {
-              "enum": [
-                "blush",
-                "bronzer",
-                "contour",
-                "eyebrows",
-                "eyeliner",
-                "eyeshadow",
-                "eyelashes",
-                "lipshape",
-                "lipliner",
-                "highlighter"
-              ],
-              "type": "string"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "categories"
-        ],
+        "properties": {},
         "additionalProperties": false
       },
       "outputSchema": {
         "type": "object",
-        "additionalProperties": true
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "error_message": {
+                    "description": "Detailed description of error",
+                    "type": "string"
+                  },
+                  "request_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "error_message"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "x-fastmcp-wrap-result": true
       },
       "annotations": {
         "readOnlyHint": true,
@@ -7521,7 +7472,112 @@
       },
       "_meta": {
         "fastmcp": {
-          "tags": []
+          "versions": [
+            "v2.0"
+          ],
+          "tags": [],
+          "version": "v2.0"
+        }
+      }
+    },
+    {
+      "name": "Get-Unit-History",
+      "title": "Get Unit History",
+      "description": "View the unit usage history for this account, such as units consumed or granted per task/order.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "properties": {
+              "page_size": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "examples": [
+                  20
+                ]
+              },
+              "starting_token": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "examples": [
+                  "73a3c9e69b89"
+                ]
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "error_message": {
+                    "description": "Detailed description of error",
+                    "type": "string"
+                  },
+                  "request_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "error_message"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "x-fastmcp-wrap-result": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "fastmcp": {
+          "versions": [
+            "v2.0"
+          ],
+          "tags": [],
+          "version": "v2.0"
         }
       }
     }
